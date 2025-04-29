@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Генератор Цитат</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #1f4037, #99f2c8);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    #quote {
+      font-size: 24px;
+      margin-bottom: 30px;
+      padding: 0 20px;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    #quote.visible {
+      opacity: 1;
+    }
+
+    button {
+      background-color: #00c896;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px;
+    }
+
+    button:hover {
+      background-color: #009e76;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="quote">Нажми на кнопку, чтобы получить цитату</div>
+    <button onclick="generateQuote()">Новая цитата</button>
+    <button onclick="copyQuote()">Скопировать</button>
+  </div>
+
+  <script>
+    const quotes = [
+      "Работа не волк. Никто не волк. Только волк — волк.",
+      "Настоящий мужчина, как ковер тети Зины — с каждым годом лысеет.",
+      "Мама учила не ругаться матом, но жизнь научила не ругаться матом при маме.",
+      "Если закрыть глаза, становится темно.",
+      "Если тебе где-то не рады в рваных носках, то и в целых туда идти не стоит.",
+      "«Жи-ши» пиши от души.",
+      "В Риме был, а папы не видал.",
+      "Тут — это вам не там.",
+      "Кто рано встает — тому весь день спать хочется.",
+      "Если ты смелый, ловкий и очень сексуальный — иди домой, ты пьян.",
+      "Упал — лежи. Земля — это тоже путь.",
+      "Вчера был на дне. Сегодня решил остаться. Уютно.",
+      "Опыт — это когда уже всё равно.",
+      "Настоящая мотивация приходит, когда дед за Wi-Fi тянется.",
+      "Не всё то отдых, что лёжа. Иногда это стресс горизонтально.",
+      "Самое страшное — когда забыл зачем зашёл на кухню.",
+      "Если жизнь дала лимоны — закажи бургер.",
+      "Спокойствие — это когда телефон упал, а экран цел.",
+      "Кто рано встаёт — тому ещё и кофе варить.",
+      "Чувство взрослости приходит, когда покупаешь губку для посуды.",
+      "Голос разума ушёл в отпуск, остался внутренний приколист.",
+      "Мечты сбываются… у кого-то.",
+      "Даже холодильник светлее, когда открываешь.",
+      "Я не опаздываю — я задерживаю реальность.",
+      "Лень — двигатель покоя.",
+      "Если день не задался — задай его обратно.",
+      "Самоирония — это когда ржёшь над собой, чтобы не плакать.",
+      "Не все герои носят плащи. Некоторые — халаты и тапки.",
+      "Если всё сложно — значит, ты всё правильно понял.",
+      "Не жди у моря погоды — жди зарплату.",
+      "План \"А\" не сработал. Хорошо, что алфавит длинный.",
+      "Разруха начинается не в сортирах, а в голове.",
+      "Кто рано ложится — тот ничего не пропускает. Но скучно.",
+      "Главное в жизни — не быть Wi-Fi без интернета.",
+      "Хочешь перемен? Купи другую кружку.",
+      "Мысли глобально, ешь локально.",
+      "Самое стабильное — это нестабильность.",
+      "Не бери жизнь слишком серьёзно — она всё равно тебя отпустит.",
+      "Планы на день: встать. Всё.",
+      "Успех — это когда всё плохо, но ты спишь спокойно."
+    ];
+
+    function generateQuote() {
+      const quoteDiv = document.getElementById('quote');
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteDiv.classList.remove("visible");
+      setTimeout(() => {
+        quoteDiv.textContent = quote;
+        quoteDiv.classList.add("visible");
+      }, 200);
+    }
+
+    function copyQuote() {
+      const text = document.getElementById('quote').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Цитата скопирована!");
+      });
+    }
+  </script>
+</body>
+</html>
